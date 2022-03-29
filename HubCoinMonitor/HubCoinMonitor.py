@@ -1,8 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
-
-# In[9]:
-
 
 import pandas as pd
 import numpy as np
@@ -94,10 +91,6 @@ def PrintAll():
 invNameBalance = {}
 invNameBalance = {v: k for k, v in nameBalance.items()}
 
-
-# In[3]:
-
-
 # The following function takes a name and returns the balance in their address
 def GetBalanceByName():
     name = input(">name? ")
@@ -109,7 +102,6 @@ def GetBalanceByName():
 GetBalanceByName()
 
 
-# In[4]:
 
 
 def GetBalanceByAddress():
@@ -119,13 +111,9 @@ def GetBalanceByAddress():
             print(nameBalance[key])
 
 
-# In[5]:
 
 
 GetBalanceByAddress()
-
-
-# In[6]:
 
 
 def GetAccountInfo():
@@ -143,19 +131,8 @@ def GetAccountInfo():
             pass
 
 
-# In[7]:
-
 
 GetAccountInfo()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
