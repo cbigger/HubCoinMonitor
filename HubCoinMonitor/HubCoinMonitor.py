@@ -167,7 +167,7 @@ async def BotGetAccountInfo(ctx, arg1):
 
 
 
-bot.run('OTU4MTc1NzgwMTA4NjQ4NDg5.YkJgvA.-9TiOwPjghM3LNu7bcqzjhJzN5E')
+bot.run('YOUR TOKEN GOES IN THESE QUOTES')
 
 
 
@@ -185,7 +185,7 @@ async def on_ready():
 async def on_message(message):
     if 'TreasuryBot!' in message.content:
         await message.channel.send
-client.run("OTU4MTc1NzgwMTA4NjQ4NDg5.YkJgvA.-9TiOwPjghM3LNu7bcqzjhJzN5E")
+client.run("YOUR TOKEN GOES IN THESE QUOTES")
 '''
 
 
