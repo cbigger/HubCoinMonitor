@@ -4,13 +4,13 @@
 import pandas as pd
 import numpy as np
 import csv
-import matplotlib.pyplot as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
-
+import discord
+import os
+from discord.ext import commands
 # HubCoinMonitor jupyter notebook
 
 #******************************************************************************
-# Setting up the two files and importing them as dataframes
+print("Setting up the two files and importing them as dataframes...")
 
 
 # REMEMBER THAT YOU MANUALLY CLEANED THE ONE **Holders** FILE AKA 'Address Book'
@@ -38,6 +38,8 @@ Records['HolderAddress'] = Records['HolderAddress'].str.lower()
 Records.drop('PendingBalanceUpdate',axis=1,inplace=True)
 #ESRecords.head(5)
 
+print("csv files loaded")
+
 # ******************************************************************************
 
 # Let's just make everything into lists LOL
@@ -55,7 +57,7 @@ addressBalance = list(zip(Records.HolderAddress, Records.Balance.apply(str)))
 # Create a dictionary to put our name:balance pairs into
 nameBalance = {}
 
-# The following function prints the name, balance, and hex address of all accounts, and populates the nameBalance dict
+# The following function is essentially PrintAll() but without printing. It populates the nameBalance dict.
 for key,value in addressBalance:
         for x in logBook:
             if key == logBook[x]:
@@ -63,12 +65,11 @@ for key,value in addressBalance:
                 #print(d1)
                 nameBalance[x]= value
             
-                #print(x)
-                #print("BALANCE:    " + value + '\r\nADDRESS:    ' + key + '\r\n')
-            
+#                print("nameBalance{} populated")
+                            
             else:
                 pass
-
+print("nameBalance{} populated")
 def PrintAll():
 
     for key,value in addressBalance:
@@ -98,7 +99,7 @@ def GetBalanceByName():
             print(nameBalance[x])
         else:
             pass
-GetBalanceByName()
+#GetBalanceByName()
 
 
 
@@ -112,11 +113,11 @@ def GetBalanceByAddress():
 
 
 
-GetBalanceByAddress()
+#GetBalanceByAddress()
 
 
-def GetAccountInfo():
-    search = input(">Enter a name or hex address: ")
+def GetAccountInfo(arg1):
+    search = arg1
     for x in logBook:
         if x == search:
             print(x + "\r\nBALANCE:    " + nameBalance[x] + "\r\nADDRESS:    " + logBook[search]  )
@@ -131,7 +132,62 @@ def GetAccountInfo():
 
 
 
-GetAccountInfo()
+#GetAccountInfo()
+
+# ***********************************************************************************************************8
+
+# Discord time!
+
+print("Loading TreasuryBot...")
+
+bot = commands.Bot(command_prefix='!')
+
+@bot.event
+async def on_ready():
+    print(f'{bot.user.name} has connected to Discord')
+
+@bot.command(name='GetAccountInfo')
+async def BotGetAccountInfo(ctx, arg1):
+    try:
+        search = arg1
+        for x in logBook:
+            if x == search:
+                await ctx.send(x + "\r\nBALANCE:    " + nameBalance[x] + "\r\nADDRESS:    " + logBook[search]  )
+            else:
+                pass
+        for x in invlogBook:
+            if x == search:
+                name = invlogBook[search]
+                await ctx.send(name + "\r\nBALANCE:    " + nameBalance[name] + "\r\nADDRESS:    " + logBook[name] )
+            else:
+                pass
+    except:
+        await ctx.send("Name or address unrecognized")
+
+
+
+
+bot.run('OTU4MTc1NzgwMTA4NjQ4NDg5.YkJgvA.-9TiOwPjghM3LNu7bcqzjhJzN5E')
+
+
+
+
+
+''' OLD SHIT >>>>>                                                                   
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    print(f'{client.user} has connected to Discord!')
+
+
+@client.event
+async def on_message(message):
+    if 'TreasuryBot!' in message.content:
+        await message.channel.send
+client.run("OTU4MTc1NzgwMTA4NjQ4NDg5.YkJgvA.-9TiOwPjghM3LNu7bcqzjhJzN5E")
+'''
+
 
 
 
