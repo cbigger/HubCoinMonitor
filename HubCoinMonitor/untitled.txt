@@ -1,6 +1,0 @@
-Sorry for more rambles, sorting thoughts:
-If we continue to issue funds the amount of coins in circulation will increase. If we don't take on new citizens at a certain undetermined rate relative to the monthly distribution, then we can assume that on average all accounts will increase by an amount within a certain range each distribution (I can probably find this range, actually). For the majority of accounts, this is the main source of income. That means that we can track the growth in average private purchasing power per month as the tangent to the curve of formula y = n@[x]/y@[x-1] where x is the month, n is the amount of distribution for that month, whooooops too high
-
-
-
-total private purchasing power: (distribution/total of previous distributions) subtract amount held in government addresses subtract unrecoverables
